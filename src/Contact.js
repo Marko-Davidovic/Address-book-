@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import "./App.css";
 import { db } from "./firebase";
 import Button from '@material-ui/core/Button';
 import { TextField } from "@material-ui/core";
 
 const Contact = () => {
-  const [name, setName] = useState("");
+  const [fname, setName] = useState("");
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [number, setNumber] = useState("");
@@ -19,7 +19,7 @@ const Contact = () => {
 
     db.collection("contacts")
       .add({
-        name: name,
+        name: fname,
         address:address,
         email: email,
         number: number,
@@ -42,51 +42,51 @@ const Contact = () => {
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <form className="form" onSubmit={handleSubmit} autoComplete="on">
       <h1>Add Address 🤳</h1>
 
-      
         <TextField
             id="outlined-basic" 
+            type="text"
             label="Full Name" 
             variant="outlined"
-            value={name}
+            name="fname"
+            value={fname}
             onChange={(e) => setName(e.target.value)}
+            required 
         />
         <br/>
 
-        {/* <label>Address</label> */}
         <TextField
             id="outlined-basic" 
             label="Address" 
             variant="outlined"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
+            required 
          />            
         <br/>
 
-        {/* <label>Email</label> */}
         <TextField
             id="outlined-basic" 
             label="Email" 
             variant="outlined"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            type="email" required 
         />
         <br/>
 
-        {/* <label>Phone Number</label> */}
         <TextField
             id="outlined-basic" 
             label="Phone Number" 
             variant="outlined"
-            
+            required 
             value={number}
             onChange={(e) => setNumber(e.target.value)}
         />    
         <br/>
 
-        {/* <label>Message</label> */}
         <textarea
             placeholder="Message"
             value={message}
