@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import { TextField } from "@material-ui/core";
 
 const Contact = () => {
-  const [fname, setName] = useState("");
+  const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [number, setNumber] = useState("");
@@ -19,7 +19,7 @@ const Contact = () => {
 
     db.collection("contacts")
       .add({
-        name: fname,
+        name: name,
         address:address,
         email: email,
         number: number,
@@ -48,10 +48,9 @@ const Contact = () => {
         <TextField
             id="outlined-basic" 
             type="text"
-            label="Full Name" 
+            label="Name" 
             variant="outlined"
-            name="fname"
-            value={fname}
+            value={name}
             onChange={(e) => setName(e.target.value)}
             required 
         />
